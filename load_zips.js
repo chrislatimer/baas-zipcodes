@@ -4,7 +4,7 @@ var liner = require('./liner');
 var zips = fs.createReadStream('assets/zipcode.csv');
 
 opts = {
-	org: 'clatimer1',
+	org: 'apigee',
 	app: 'sandbox',
 	collection: 'zipcodes'
 }
@@ -28,8 +28,8 @@ liner.on('readable', function() {
 			}
 
 			reqMap = {
-				method: 'POST',
-				url: 'https://api.usergrid.com/'+opts.org+'/'+opts.app+'/' +opts.collection,
+				method: 'PUT',
+				url: 'https://usergrid-e2e-prod.e2e.apigee.net/appservices-2-1/'+opts.org+'/'+opts.app+'/' +opts.collection+'/' + fields[0],
 				body: JSON.stringify(reqBody),
 				headers: {
 					"Content-Type": "application/json"
@@ -127,3 +127,4 @@ function CSVToArray(strData, strDelimiter) {
 	// Return the parsed data.
 	return (arrData);
 }
+
